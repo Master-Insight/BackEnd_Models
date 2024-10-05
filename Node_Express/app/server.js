@@ -36,7 +36,7 @@ initializePassport()
 app.use(passport.initialize())
 
 // App Routes --------------------------------
-app.get('/', (req, res) => { res.send({prueba: "Hello backend"}) });
+app.get('/', (req, res) => { res.send({"message": "Hello, Node.Js Express Backend!"}) });
 app.use('/', appRouter);
 
 // Error Handling Middleware --------------------------------

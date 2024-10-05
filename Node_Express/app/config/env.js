@@ -17,12 +17,6 @@ const configEnv = {
   gmail_user_app:   process.env.GMAIL_USER_APP,
   gmail_pass_app:   process.env.GMAIL_PASS_APP,
 
-  // linkedin
-  linkedin_client_id:     process.env.LINKEDIN_CLIENT_ID,
-  linkedin_client_secret: process.env.LINKEDIN_CLIENT_SECRET,
-  linkedin_redirect_uri:  process.env.LINKEDIN_REDIRECT_URI,
-  linkedin_scope:         process.env.LINKEDIN_SCOPE,
-
   // cloudinary
   cloudinary_name:    process.env.CLOUDINARY_NAME,
   cloudinary_key:     process.env.CLOUDINARY_KEY,

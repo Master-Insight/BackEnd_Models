@@ -1,0 +1,53 @@
+# Directorio de dependencias de Go
+# /vendor/
+.env
+
+# Archivos binarios generados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Carpetas generadas por Go
+/bin/
+/build/
+/dist/
+
+# Archivos temporales del editor o del sistema
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Configuración de Air (Archivo de configuración personalizado de Air)
+.air.toml
+.air.yml
+.air.conf
+
+# Logs
+*.log
+/logs
+
+# Módulos y archivos de compilación de Go
+/go.sum
+/go.mod
+/go.work
+/go.work.sum
+
+# IDEs/Editor configs
+.idea/
+.vscode/
+*.code-workspace
+
+# Archivos de test
+*.test
+
+# Evitar subir la cache de Go
+/.cache
+
+# Archivos de Air que son temporales
+/tmp/

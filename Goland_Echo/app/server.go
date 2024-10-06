@@ -2,7 +2,8 @@ package app
 
 import (
 	"aprendiendoGo/app/middlewares"
-	"aprendiendoGo/app/routes"
+	"aprendiendoGo/app/modules"
+	"aprendiendoGo/app/services/db/mongo"
 	"aprendiendoGo/app/services/env"
 	"log"
 
@@ -19,17 +20,17 @@ func Boot() {
 	cfg := env.LoadEnviroment("json")
 	port := cfg.Config.Port
 
+	// App Data Source Configuration --------------------------------
+	mongo.GetMongoInstance(cfg.Services.Persistence.Mongo[0].URI)
+	defer mongo.DisconnectMongo()
+
 	// App Middleware --------------------------------
 	e.Use(middlewares.LoggerMiddleware())
 	e.Use(middlewares.RecoverMiddleware())
 	e.Use(middlewares.CORSMiddleware(cfg.CorsOrigin[0]))
 
 	// App Routes --------------------------------
-	e.GET("/", func(c echo.Context) error {
-		return c.JSON(200, map[string]string{"message": "Hello, Go Echo Backend!"})
-	})
-	// Inicializar rutas de la aplicación
-	routes.Routes(e)
+	modules.Routes(e)
 
 	// App Launch --------------------------------
 	log.Println("Server running on port:", port)

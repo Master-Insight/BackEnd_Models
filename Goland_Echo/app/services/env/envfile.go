@@ -9,7 +9,7 @@ import (
 )
 
 // Carga de archivo Env
-func LoadEnv() *ConfigEnv {
+func LoadEnv() *ConfigEnvStruc {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
@@ -19,7 +19,7 @@ func LoadEnv() *ConfigEnv {
 	corsOrigin := strings.Split(getEnv("CORS_ORIGIN", "*"), ",")
 
 	// Asignar valores de entorno a la configuración
-	return &ConfigEnv{
+	return &ConfigEnvStruc{
 		// la alternativa es os.Getenv("PORT") pero no te asegura que este
 		Config: Config{
 			AppName: getEnv("APP_NAME", "Go Echo Backend"),

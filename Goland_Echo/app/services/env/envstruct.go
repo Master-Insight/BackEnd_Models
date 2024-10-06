@@ -1,7 +1,7 @@
 package env
 
 // Estructura de las variables de entorno de la aplicación partiendo desde un Json
-type ConfigEnv struct {
+type ConfigEnvStruc struct {
 	Config     Config   `json:"config"`
 	CorsOrigin []string `json:"cors_origin"`
 	Codes      Codes    `json:"codes"`

@@ -2,15 +2,19 @@ package env
 
 import "log"
 
+var configEnv *ConfigEnvStruc
+
 // LoadEnviroment decide qué método usar para cargar la configuración
-func LoadEnviroment(method string) *ConfigEnv {
+func LoadEnviroment(method string) *ConfigEnvStruc {
 	switch method {
 	case "env":
-		return LoadEnv()
+		configEnv = LoadEnv()
 	case "json":
-		return LoadJsonEnv()
+		configEnv = LoadJsonEnv()
 	default:
 		log.Fatalf("Método de carga de configuración no soportado: %v", method)
 		return nil
 	}
+
+	return configEnv
 }

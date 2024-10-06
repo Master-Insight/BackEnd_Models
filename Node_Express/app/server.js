@@ -8,7 +8,7 @@ import { addLogger, logger } from './middleware/logger.js';
 import handleResponses from './middleware/handleResponses.js';
 import initializePassport from './modules/auth/config/passport.config.js';
 import passport from 'passport';
-import appRouter from './config/routes.js'
+import appRouter from './modules/routes.js'
 import handleErrors from './middleware/handleErrors.js';
 import dotenv from 'dotenv';
 
@@ -39,7 +39,6 @@ initializePassport()
 app.use(passport.initialize())
 
 // App Routes --------------------------------
-app.get('/', (req, res) => { res.send({"message": "Hello, Node.Js Express Backend!"}) });
 app.use('/', appRouter);
 
 // Error Handling Middleware --------------------------------

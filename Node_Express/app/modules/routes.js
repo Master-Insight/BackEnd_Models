@@ -1,14 +1,15 @@
 import { Router } from "express";
-import usersRouter from "../modules/users/api/routes.js";
-import authRouter from "../modules/auth/api/routes.js";
-import contributionsRouter from "../modules/contributions/api/routes.js";
-import valuesRouter from "../modules/utils/routes.js";
-import AppError from "./AppError.js";
+import usersRouter from "./users/api/routes.js";
+import authRouter from "./auth/api/routes.js";
+import contributionsRouter from "./contributions/api/routes.js";
+import valuesRouter from "./utils/routes.js";
+import AppError from "../config/AppError.js";
 
 const router = Router()
 
 // http://localhost:8080/
 
+router.get('/', (req, res) => { res.send({"message": "Hello, Node.Js Express Backend!"}) });
 router.use('/v1/users/', usersRouter)
 router.use('/v1/auth/', authRouter)
 router.use('/v1/contributions/', contributionsRouter)

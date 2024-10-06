@@ -1,6 +1,6 @@
 import { connect } from "mongoose"
 import { logger } from "../middleware/logger.js";
-import configEnv from "./env/env.js"
+import configEnv from "../services/env/env.js"
 
 
 class MongoSingleton {

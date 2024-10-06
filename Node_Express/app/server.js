@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'node:path'
-import configEnv, { LoadEnviroment } from './config/env/env.js';
+import configEnv, { LoadEnviroment } from './services/env/env.js';
 import cors from 'cors'
 import __dirname from './libraries/utils/dirname.js';
 import { connectDb } from './config/connectMongo.js';

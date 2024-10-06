@@ -1,4 +1,4 @@
-import configEnv from "../../../config/env.js";
+import configEnv from "../../../services/env/env.js";
 import passport from "passport";
 import jwt from "passport-jwt";
 // import { Strategy as LinkedInStrategy } from "passport-linkedin-oauth2"
@@ -12,7 +12,7 @@ const initializePassport = () => {
   passport.use("jwt", new JWTStrategy(
       {
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey: configEnv.jwt_code,
+        secretOrKey: configEnv.codes.jwt,
       },
       async (jwt_payload, done) => {
         try {

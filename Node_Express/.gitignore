@@ -1,6 +1,10 @@
-.env
-.env.development
+
 mock/
+
+# Variable de sistema
+.env
+env.json
+.env*
 
 # Logs
 logs

@@ -1,11 +1,11 @@
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 import __dirname from '../utils/dirname.js';
-import configEnv from '../../config/env.js';
+import configEnv from '../../services/env/env.js';
 
-const user = configEnv.gmail_user_name;
-const email = configEnv.gmail_user_app;
-const password = configEnv.gmail_pass_app;
+const user = configEnv.services.email.user_name;
+const email = configEnv.services.email.gmail_user;
+const password = configEnv.services.email.gmail_pass;
 
 // Congiguración
 

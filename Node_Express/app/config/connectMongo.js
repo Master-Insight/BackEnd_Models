@@ -1,12 +1,12 @@
 import { connect } from "mongoose"
 import { logger } from "../middleware/logger.js";
-import configEnv from "./env.js"
+import configEnv from "../services/env/env.js"
 
 
 class MongoSingleton {
   static instance
   constructor() {
-    connect(configEnv.mongo_uri);
+    connect(configEnv.services.prsistence.mongo_uri[0]);
   }
 
   static getInstance() {

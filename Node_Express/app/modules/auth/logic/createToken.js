@@ -1,7 +1,7 @@
-import configEnv from "../../../config/env.js";
+import configEnv from "../../../services/env/env.js";
 import jwt from "jsonwebtoken";
 
-const JWT_PRIVATE_KEY = configEnv.jwt_code;
+const JWT_PRIVATE_KEY = configEnv.codes.jwt;
 
 const createToken = (user) => jwt.sign(user, JWT_PRIVATE_KEY, { expiresIn: "1d" });
 

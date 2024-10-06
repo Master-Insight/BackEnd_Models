@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'node:path'
-import configEnv from './config/env.js';
+import configEnv, { LoadEnviroment } from './services/env/env.js';
 import cors from 'cors'
 import __dirname from './libraries/utils/dirname.js';
 import { connectDb } from './config/connectMongo.js';
@@ -14,11 +14,14 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
+
 // App initialization ------------------------------
 const app = express();
-app.use(cors({origin:configEnv.cors_origin}));
 
 // App Configurations --------------------------------
+LoadEnviroment("json")
+
+app.use(cors({origin:configEnv.cors_origin}));
 const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

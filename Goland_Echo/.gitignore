@@ -1,6 +1,10 @@
 # Directorio de dependencias de Go
 # /vendor/
+
+# Variable de sistema
 .env
+env.json
+.env*
 
 # Archivos binarios generados
 *.exe

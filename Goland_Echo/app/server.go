@@ -1,9 +1,9 @@
 package app
 
 import (
-	"aprendiendoGo/app/config/env"
 	"aprendiendoGo/app/middlewares"
 	"aprendiendoGo/app/routes"
+	"aprendiendoGo/app/services/env"
 	"log"
 
 	"github.com/labstack/echo/v4"
@@ -16,17 +16,17 @@ func Boot() {
 	e := echo.New()
 
 	// App Configurations --------------------------------
-	cfg := env.LoadEnv()
-	port := cfg.Port
+	cfg := env.LoadEnviroment("json")
+	port := cfg.Config.Port
 
 	// App Middleware --------------------------------
 	e.Use(middlewares.LoggerMiddleware())
 	e.Use(middlewares.RecoverMiddleware())
-	e.Use(middlewares.CORSMiddleware(cfg.CorsOrigin))
+	e.Use(middlewares.CORSMiddleware(cfg.CorsOrigin[0]))
 
 	// App Routes --------------------------------
 	e.GET("/", func(c echo.Context) error {
-		return c.JSON(200, map[string]string{"message": "Hello, Go Backend!"})
+		return c.JSON(200, map[string]string{"message": "Hello, Go Echo Backend!"})
 	})
 	// Inicializar rutas de la aplicación
 	routes.Routes(e)

@@ -1,4 +1,4 @@
-import configEnv from "../../../config/env.js";
+import configEnv from "../../../services/env/env.js";
 import CustomService from "../../../libraries/customs/service.js";
 import createToken from "./createToken.js";
 import { createHashAsync, isValidPasswordAsync } from "./passwords.js";
@@ -11,8 +11,8 @@ import AppError from "../../../config/AppError.js";
 export default class Service extends CustomService {
   constructor() {
     super(new ThisDaoMongo);
-    this.admins = configEnv.uadmins || []
-    this.admin_pass = configEnv.uadmin_pass
+    this.admins = configEnv.admin.users || []
+    this.admin_pass = configEnv.admin.pass
   }
 
   // REGISTRO TRADICIONAL

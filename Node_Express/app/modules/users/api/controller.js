@@ -1,5 +1,5 @@
 import AppError from "../../../config/AppError.js";
-import cloudinary from "../../../config/cloudinary.js";
+import cloudinary from "../../../services/images/cloudinary.js";
 import CustomController from "../../../libraries/customs/controller.js";
 import Service from "../logic/service.js";
 import fs from 'node:fs'

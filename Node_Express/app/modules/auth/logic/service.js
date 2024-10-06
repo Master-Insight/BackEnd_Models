@@ -1,4 +1,4 @@
-import configEnv from "../../../services/env/env.js";
+import configEnv from "../../../config/env/env.js";
 import CustomService from "../../../libraries/customs/service.js";
 import createToken from "./createToken.js";
 import { createHashAsync, isValidPasswordAsync } from "./passwords.js";

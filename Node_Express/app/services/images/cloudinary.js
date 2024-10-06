@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary'
-import configEnv from '../services/env/env.js'
+import configEnv from '../../config/env/env.js'
 
 cloudinary.config({
   cloud_name: configEnv.services.images.cloudinary.name,

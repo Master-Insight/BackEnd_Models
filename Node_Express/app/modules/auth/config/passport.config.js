@@ -1,4 +1,4 @@
-import configEnv from "../../../services/env/env.js";
+import configEnv from "../../../config/env/env.js";
 import passport from "passport";
 import jwt from "passport-jwt";
 // import { Strategy as LinkedInStrategy } from "passport-linkedin-oauth2"

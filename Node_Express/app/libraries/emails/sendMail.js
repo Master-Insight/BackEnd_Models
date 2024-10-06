@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 import __dirname from '../utils/dirname.js';
-import configEnv from '../../services/env/env.js';
+import configEnv from '../../config/env/env.js';
 
 const user = configEnv.services.email.user_name;
 const email = configEnv.services.email.gmail_user;

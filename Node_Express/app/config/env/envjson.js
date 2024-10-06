@@ -8,7 +8,7 @@ const LoadEnvJson = () => {
   try {
     // Lee el archivo config.json
     const configPath = path.join(__dirname, 'env.json');
-    const rawConfig = fs.readFileSync(configPath);
+    const rawConfig = fs.readFileSync(configPath); 
     const config = JSON.parse(rawConfig);
 
     // Retorna el contenido del archivo

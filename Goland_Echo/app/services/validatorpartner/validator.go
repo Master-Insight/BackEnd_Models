@@ -1,10 +1,12 @@
 package validatorpartner
 
 import (
+	res "aprendiendoGo/app/services/handleResponses"
 	"fmt"
 	"reflect"
 
 	v "github.com/go-playground/validator/v10"
+	"github.com/labstack/echo/v4"
 )
 
 // Validator is in charge of validating data
@@ -31,6 +33,15 @@ func (validator *Validator) Data(data interface{}) *Validator {
 	return validator
 }
 
+// * New Create and return an instance of Validator with Data
+func NewWithData(data interface{}) *Validator {
+	var validator Validator
+	validator.validate = v.New()
+	validator.data = data
+
+	return &validator
+}
+
 // Validate validates all the validator data
 func (validator *Validator) Validate() map[string][]map[string]string {
 
@@ -45,44 +56,45 @@ func (validator *Validator) Validate() map[string][]map[string]string {
 	return nil
 }
 
-// ValidateSend validates all the validator data and responde
-// func (validator *Validator) ValidateSend(response *response.Response)  error {
+// * ValidateSend validates all the validator data and responde
+func (validator *Validator) ValidateSend(c echo.Context, response *res.Response) error {
 
-// 	dataErrs := validator.validate.Struct(validator.data)
-// 	if dataErrs != nil{
+	dataErrs := validator.validate.Struct(validator.data)
+	if dataErrs != nil {
+		dataErrsResponse := validator.makeDataErrsResponse(dataErrs)
 
-// 		dataErrsResponse := validator.makeDataErrsResponse(dataErrs);
+		//defer panic("validator response")
+		return res.Unprocessable(c, "errors", dataErrsResponse)
+	}
 
-// 		//defer panic("validator response")
-// 		return response.Code(422).Data(dataErrsResponse).Message("errors").Send()
+	return nil
+}
 
-// 	}
-
-// 	return nil
-// }
-
-// makeDataErrsResponse create the map with the errors
+// * makeDataErrsResponse genera la respuesta de errores de validación personalizados
 func (validator *Validator) makeDataErrsResponse(dataErrs interface{}) map[string][]map[string]string {
-
 	dataErrsResponse := make(map[string][]map[string]string)
 
 	for _, err := range dataErrs.(v.ValidationErrors) {
 		errItem := make(map[string]string)
 		field, _ := reflect.TypeOf(validator.data).FieldByName(err.Field())
 		fieldTag, _ := field.Tag.Lookup("field")
-		messageTag, _ := field.Tag.Lookup(err.ActualTag() + "-message")
+
+		// Personalizar mensajes basados en el campo y la etiqueta de validación
+		key := fmt.Sprintf("%s.%s", err.Field(), err.Tag())
+		if customMessage, exists := customErrorMessages[key]; exists {
+			errItem["message"] = customMessage
+		} else {
+			// Mensaje genérico si no se encuentra personalizado
+			errItem["message"] = fmt.Sprintf("%s no es válido", fieldTag)
+		}
+
 		errItem["field"] = fieldTag
 		errItem["condition"] = err.ActualTag()
-		if messageTag != "" {
-			errItem["message"] = messageTag
-		} else {
-			errItem["message"] = fmt.Sprint(err)
-		}
+
 		dataErrsResponse["errors"] = append(dataErrsResponse["errors"], errItem)
 	}
 
 	return dataErrsResponse
-
 }
 
 // CustomValidation add a function to validate

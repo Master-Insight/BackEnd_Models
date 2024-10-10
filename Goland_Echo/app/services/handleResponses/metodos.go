@@ -50,7 +50,7 @@ func UserError(c echo.Context, message string, data interface{}) error {
 		message = "Bad Request"
 	}
 	// Si no hay datos, se deja el valor por defecto (vacío)
-	resp := New(c).Message(message).Code(http.StatusOK)
+	resp := New(c).Message(message).Code(http.StatusBadRequest)
 	if data != nil {
 		resp.Data(data)
 	}
@@ -63,7 +63,7 @@ func Unauthorized(c echo.Context, message string, data interface{}) error {
 		message = "Unauthorized"
 	}
 	// Si no hay datos, se deja el valor por defecto (vacío)
-	resp := New(c).Message(message).Code(http.StatusOK)
+	resp := New(c).Message(message).Code(http.StatusUnauthorized)
 	if data != nil {
 		resp.Data(data)
 	}
@@ -76,7 +76,7 @@ func Forbidden(c echo.Context, message string, data interface{}) error {
 		message = "Forbidden"
 	}
 	// Si no hay datos, se deja el valor por defecto (vacío)
-	resp := New(c).Message(message).Code(http.StatusOK)
+	resp := New(c).Message(message).Code(http.StatusForbidden)
 	if data != nil {
 		resp.Data(data)
 	}
@@ -89,20 +89,20 @@ func NotFound(c echo.Context, message string, data interface{}) error {
 		message = "Not Found"
 	}
 	// Si no hay datos, se deja el valor por defecto (vacío)
-	resp := New(c).Message(message).Code(http.StatusOK)
+	resp := New(c).Message(message).Code(http.StatusNotFound)
 	if data != nil {
 		resp.Data(data)
 	}
 	return resp.Send()
 }
 
-// NotFound envía una respuesta con código 404
+// NotFound envía una respuesta con código 422
 func Unprocessable(c echo.Context, message string, data interface{}) error {
 	if message == "" {
 		message = "Unprocessable Content"
 	}
 	// Si no hay datos, se deja el valor por defecto (vacío)
-	resp := New(c).Message(message).Code(http.StatusOK)
+	resp := New(c).Message(message).Code(http.StatusUnprocessableEntity)
 	if data != nil {
 		resp.Data(data)
 	}
@@ -115,7 +115,7 @@ func ServerError(c echo.Context, message string, data interface{}) error {
 		message = "Internal Server Error"
 	}
 	// Si no hay datos, se deja el valor por defecto (vacío)
-	resp := New(c).Message(message).Code(http.StatusOK)
+	resp := New(c).Message(message).Code(http.StatusInternalServerError)
 	if data != nil {
 		resp.Data(data)
 	}

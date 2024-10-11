@@ -8,8 +8,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// Carga de archivo Env
-func LoadEnv() *ConfigEnvStruc {
+// Carga de archivo .Env
+func loadEnvFile() *ConfigEnvStruc {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
@@ -37,7 +37,10 @@ func LoadEnv() *ConfigEnvStruc {
 			Persistence: Persistence{
 				Service: getEnv("PERSISTENCE", ""),
 				Mongo: []Mongo{
-					{URI: getEnv("MONGO_URI", "")},
+					{
+						URI:      getEnv("MONGO_URI", ""),
+						Database: getEnv("MONGO_DATABASE", ""),
+					},
 				},
 			},
 			Email: Email{

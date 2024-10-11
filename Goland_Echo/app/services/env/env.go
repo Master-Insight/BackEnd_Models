@@ -16,17 +16,16 @@ func Get() *ConfigEnvStruc {
 	return configEnv
 }
 
-// LoadEnviroment decide qué método usar para cargar la configuración
-func LoadEnviroment(method string) *ConfigEnvStruc {
-	switch method {
-	case "env":
-		configEnv = LoadEnv()
-	case "json":
-		configEnv = LoadJsonEnv()
-	default:
-		log.Fatalf("Método de carga de configuración no soportado: %v", method)
-		return nil
-	}
-
-	return configEnv
-}
+// LoadEnvironment decide qué método usar para cargar la configuración
+func LoadEnvironment(method string) {
+	once.Do(func() {
+		switch method {
+		case "env":
+			configEnv = loadEnvFile()
+		case "json":
+			configEnv = loadJsonFile()
+		default:
+			log.Fatalf("Método de carga de configuración no soportado: %v", method)
+		}
+	})
+} // Ejemplo: env.LoadEnvironment("json")

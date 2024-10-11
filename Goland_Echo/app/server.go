@@ -13,26 +13,27 @@ import (
 // Boot inicia la api
 func Boot() {
 
-	// App initialization ------------------------------
+	// App initialization --------------------------------
 	e := echo.New()
 
 	// App Configurations --------------------------------
-	cfg := env.LoadEnviroment("json")
+	env.LoadEnvironment("json") // Carga el ambiente una sola vez
+	cfg := env.Get()
 	port := cfg.Config.Port
 
-	// App Data Source Configuration --------------------------------
+	// Data Source Config --------------------------------
 	mongo.GetMongoInstance(cfg.Services.Persistence.Mongo[0].URI)
 	defer mongo.DisconnectMongo()
 
-	// App Middleware --------------------------------
+	// Middleware ----------------------------------------
 	e.Use(middlewares.LoggerMiddleware())
 	e.Use(middlewares.RecoverMiddleware())
 	e.Use(middlewares.CORSMiddleware(cfg.CorsOrigin[0]))
 
-	// App Routes --------------------------------
+	// Routes --------------------------------------------
 	modules.Routes(e)
 
-	// App Launch --------------------------------
-	log.Println("Server running on port:", port)
+	// App Launch ----------------------------------------
+	log.Printf("Server running on port: %s", port)
 	e.Logger.Fatal(e.Start(":" + port))
 }

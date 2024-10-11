@@ -40,7 +40,10 @@ func registerHandler(c echo.Context) error {
 	}
 
 	// Llamar al servicio de registro y obtener la respuesta
-	registeredUser := auth_logic.RegisterUser(user)
+	registeredUser, err := auth_logic.RegisterUser(user)
+	if err != nil {
+		return res.UserError(c, "Error al registrar el usuario", err)
+	}
 
 	// Devolver el usuario registrado
 	return res.Created(c, registeredUser, "User created")

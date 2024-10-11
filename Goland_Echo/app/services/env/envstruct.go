@@ -44,7 +44,8 @@ type Persistence struct {
 
 // Persistence --> Mongo estructura para la conexión a MongoDB
 type Mongo struct {
-	URI string `json:"uri"`
+	URI      string `json:"uri"`
+	Database string `json:"database"`
 }
 
 // Email contiene la configuración del servicio de email

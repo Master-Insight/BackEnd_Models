@@ -1,6 +1,7 @@
 package mongo
 
 import (
+	"aprendiendoGo/app/services/env"
 	"context"
 	"log"
 	"sync"
@@ -40,6 +41,19 @@ func (m *MongoSingleton) connect(uri string) *mongo.Client {
 
 	log.Println("Conectado a MongoDB")
 	return client
+}
+
+// MongoSingleton - Open - Abre conexion ya abierta
+func Open() *mongo.Client {
+	if instance == nil {
+		instance.connect(env.LoadEnviroment("json").Services.Persistence.Mongo[0].URI)
+	}
+	return instance.client
+}
+
+// MongoSingleton - DB - Selecciona la DB elegida
+func DB() *mongo.Database {
+	return instance.client.Database(env.LoadEnviroment("json").Services.Persistence.Mongo[0].Database)
 }
 
 // Obtener una instancia única de la conexión a MongoDB

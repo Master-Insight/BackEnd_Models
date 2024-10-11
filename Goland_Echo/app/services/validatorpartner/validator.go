@@ -33,15 +33,6 @@ func (validator *Validator) Data(data interface{}) *Validator {
 	return validator
 }
 
-// * New Create and return an instance of Validator with Data
-func NewWithData(data interface{}) *Validator {
-	var validator Validator
-	validator.validate = v.New()
-	validator.data = data
-
-	return &validator
-}
-
 // Validate validates all the validator data
 func (validator *Validator) Validate() map[string][]map[string]string {
 

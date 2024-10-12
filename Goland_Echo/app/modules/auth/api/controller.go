@@ -3,7 +3,7 @@ package auth_api
 import (
 	auth_data "aprendiendoGo/app/modules/auth/data"
 	auth_logic "aprendiendoGo/app/modules/auth/logic"
-	res "aprendiendoGo/app/services/handleResponses"
+	"aprendiendoGo/app/services/response"
 	"aprendiendoGo/app/services/validatorpartner"
 	"net/http"
 
@@ -26,7 +26,7 @@ func registerHandler(c echo.Context) error {
 
 	// Bind JSON a la estructura de usuario
 	if err := c.Bind(&user); err != nil {
-		res.UserError(c, "Error al analizar los datos", nil)
+		response.UserError(c, "Error al analizar los datos", nil)
 	}
 
 	// * Validar los datos
@@ -34,17 +34,16 @@ func registerHandler(c echo.Context) error {
 	validator := validatorpartner.NewWithData(user)
 
 	// Validar los datos y gestionar respuesta en caso de errores
-	response := res.New(c)
-	if validationErrors := validator.ValidateSend(c, response); validationErrors != nil {
+	if validationErrors := validator.ValidateSend(c); validationErrors != nil {
 		return validationErrors
 	}
 
 	// Llamar al servicio de registro y obtener la respuesta
 	registeredUser, err := auth_logic.RegisterUser(user)
 	if err != nil {
-		return res.UserError(c, "Error al registrar el usuario", err)
+		return response.UserError(c, "Error al registrar el usuario", err)
 	}
 
 	// Devolver el usuario registrado
-	return res.Created(c, registeredUser, "User created")
+	return response.Created(c, registeredUser, "User created")
 }

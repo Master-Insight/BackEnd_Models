@@ -1,5 +1,5 @@
 import passport from "passport";
-import Service from "../modules/users/logic/service.js";
+import Service from "../../modules/users/logic/service.js";
 
 const usersService = new Service()
 

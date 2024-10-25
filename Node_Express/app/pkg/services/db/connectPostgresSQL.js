@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import { logger } from '../../../middleware/logger.js'; // Ajusta la ruta según tu estructura
+import { logger } from '../../middleware/logger.js'; // Ajusta la ruta según tu estructura
 import configEnv from '../env/env.js'; // Ajusta la ruta según tu estructura
 
 class PostgresSingleton {

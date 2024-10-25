@@ -2,14 +2,14 @@ import express from 'express';
 import path from 'node:path'
 import configEnv from '../pkg/services/env/env.js';
 import cors from 'cors'
-import __dirname from '../libraries/utils/dirname.js';
-import initializeDatabases from '../pkg/services/db/dbInit.js';
-import { addLogger, logger } from '../middleware/logger.js';
-import handleResponses from '../middleware/handleResponses.js';
+import __dirname from '../pkg/utilities/dirname.js';
+import initializeDatabases from '../pkg/services/db/init.js';
+import initializeMiddlewares from '../pkg/middleware/init.js';
+import { logger } from '../pkg/middleware/logger.js';
 import initializePassport from '../modules/auth/config/passport.config.js';
 import passport from 'passport';
 import appRouter from '../modules/routes.js'
-import handleErrors from '../middleware/handleErrors.js';
+import handleErrors from '../pkg/middleware/handleErrors.js';
 import dotenv from 'dotenv';
 
 // * App initialization ------------------------------
@@ -26,11 +26,11 @@ dotenv.config()
 const port = process.env.PORT || configEnv.config.port || 8080;
 
 // App Data Source Configuration --------------------------------
-initializeDatabases()
+const persistence = configEnv.services.persistence.service || "mongo"
+initializeDatabases(persistence)
 
 // App Middleware --------------------------------
-app.use(addLogger)
-app.use(handleResponses)
+initializeMiddlewares(app)
 
 // passport
 initializePassport()

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Controller from "./controller.js";
-import { clients, handleAuth, users } from "../../../middleware/handlePolicies.js";
+import { clients, handleAuth, users } from "../../../pkg/middleware/handlePolicies.js";
 import validSchema from "./validation.js";
 import { celebrate } from "celebrate";
 import passport from 'passport'

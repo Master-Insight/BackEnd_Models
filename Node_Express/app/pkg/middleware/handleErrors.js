@@ -1,5 +1,5 @@
 import { logger } from "./logger.js";
-import AppError from '../config/AppError.js';
+import AppError from "../../config/AppError.js";
 import { isCelebrateError } from 'celebrate';
 
 const handleErrors = (err, req, res, next) => {

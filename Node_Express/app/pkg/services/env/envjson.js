@@ -1,7 +1,7 @@
-import __dirname from '../../../libraries/utils/dirname.js';
+import __dirname from '../../utilities/dirname.js';
 import fs from 'node:fs';
 import path from 'node:path';
-import { logger } from '../../../middleware/logger.js';
+import { logger } from '../../middleware/logger.js';
 
 // Carga de archivo Env
 const LoadEnvJson = () => {

@@ -1,9 +1,9 @@
 import configEnv from "../../../pkg/services/env/env.js";
-import CustomService from "../../../libraries/customs/service.js";
-import createToken from "./createToken.js";
-import { createHashAsync, isValidPasswordAsync } from "./passwords.js";
+import CustomService from "../../../pkg/custom/service.js";
+import createToken from "../../../pkg/services/auth/createToken.js";
+import { createHashAsync, isValidPasswordAsync } from "../../../pkg/services/auth/passwords.js";
 import ThisDaoMongo from "../../users/data/dao.mongo.js";
-import { sendMail } from "../../../libraries/emails/sendMail.js";
+import { sendMail } from "../../../pkg/services/emails/sendMail.js";
 //import generateRandomPassword from "../../../libraries/utils/generateRandomPassword.js";
 import AppError from "../../../config/AppError.js";
 

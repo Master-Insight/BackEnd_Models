@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import { LANGUAJES, PROFESSIONS, FRAMEWORKS } from "./valueList.js";
-import { handleAuth, users } from "../../middleware/handlePolicies.js";
+import { handleAuth, users } from "../../pkg/middleware/handlePolicies.js";
 
 const router = Router();
 

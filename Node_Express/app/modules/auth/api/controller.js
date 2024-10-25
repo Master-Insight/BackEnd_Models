@@ -1,5 +1,5 @@
 import AppError from "../../../config/AppError.js";
-import CustomController from "../../../libraries/customs/controller.js";
+import CustomController from "../../../pkg/custom/controller.js";
 import { Authorization, Redirect } from "../config/authLinkedIn.js";
 import Service from "../logic/service.js";
 

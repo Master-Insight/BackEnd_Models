@@ -26,15 +26,16 @@ func registerHandler(c echo.Context) error {
 
 	// Bind JSON a la estructura de usuario
 	if err := c.Bind(&user); err != nil {
-		response.UserError(c, "Error al analizar los datos", nil)
+		return response.UserError(c, "Error al analizar los datos", nil)
 	}
 
 	// * Validar los datos
-	// Crear una nueva instancia
-	validator := validatorpartner.NewWithData(user)
+	// Crear una nueva instancia de validador
+	validator := validatorpartner.New().Data(user)
 
 	// Validar los datos y gestionar respuesta en caso de errores
 	if validationErrors := validator.ValidateSend(c); validationErrors != nil {
+		// Si hay errores de validación, se retornan
 		return validationErrors
 	}
 

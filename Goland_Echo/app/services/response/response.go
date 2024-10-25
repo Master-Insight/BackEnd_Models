@@ -39,25 +39,15 @@ func New(c echo.Context) *Response {
 // Send envía la respuesta con el código de estado y datos configurados.
 func (r *Response) Send() error {
 	return r.Context.JSON(r.Estructura.State.Code, r.Estructura)
-}
+} // ? Ejemplo: return res.New(c).Data("Success!").Send()
 
-// ? Ejemplo de uso:
-// ? func handler(c echo.Context) error {
-// ?     return res.New(c).Data("Success!").Send()
-// ? }
-
-// * Métodos auxiliares para actualizar los datos de la respuesta.
+// * Métodos auxiliares para actualizar los datos básicos de la respuesta.
 
 // Data setea la data de la respuesta
 func (response *Response) Data(data interface{}) *Response {
 	response.Estructura.Data = data
 	return response
-}
-
-// ? Ejemplo de uso:
-// ? func handler(c echo.Context) error {
-// ?     return res.New(c).Data(map[string]string{"name": "John"}).Send()
-// ? }
+} // ? Ejemplo: return res.New(c).Data(map[string]string{"name": "John"}).Send()
 
 // Message setea el mensaje de la respuesta
 func (response *Response) Message(message string) *Response {

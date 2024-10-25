@@ -1,6 +1,6 @@
 import qs from 'qs'
 import axios from 'axios'
-import configEnv from '../../../services/env/env.js'
+import configEnv from '../../../pkg/services/env/env.js'
 
 export const Authorization = () => {
     return encodeURI(`http://linkedin.com/oauth/v2/authorization?client_id=${configEnv.linkedin_client_id}&response_type=code&scope=${configEnv.linkedin_scope}&redirect_uri=${configEnv.linkedin_redirect_uri}`)

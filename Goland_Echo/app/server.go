@@ -29,6 +29,7 @@ func Boot() {
 	e.Use(middlewares.LoggerMiddleware())
 	e.Use(middlewares.RecoverMiddleware())
 	e.Use(middlewares.CORSMiddleware(cfg.CorsOrigin[0]))
+	//e.Use(middlewares.ErrorHandlerMiddleware)
 
 	// Routes --------------------------------------------
 	modules.Routes(e)

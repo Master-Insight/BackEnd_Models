@@ -1,7 +1,7 @@
 import multer from 'multer'
 import path from 'node:path'
 import __dirname from '../utilities/dirname.js'
-import AppError from '../../config/AppError.js'
+import AppError from '../errors/AppError.js'
 
 /**
  * Configuración de Multer para almacenamiento en disco o memoria

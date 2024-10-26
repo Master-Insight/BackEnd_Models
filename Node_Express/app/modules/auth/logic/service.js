@@ -5,7 +5,7 @@ import { createHashAsync, isValidPasswordAsync } from "../../../pkg/services/aut
 import ThisDaoMongo from "../../users/data/dao.mongo.js";
 import { sendMail } from "../../../pkg/services/emails/sendMail.js";
 //import generateRandomPassword from "../../../libraries/utils/generateRandomPassword.js";
-import AppError from "../../../config/AppError.js";
+import AppError from "../../../pkg/errors/AppError.js";
 
 
 export default class Service extends CustomService {

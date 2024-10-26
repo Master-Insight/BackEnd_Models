@@ -1,6 +1,6 @@
 import CustomService from "../../../pkg/custom/service.js";
 import ThisDaoMongo from "../data/dao.mongo.js";
-import AppError from "../../../config/AppError.js";
+import AppError from "../../../pkg/errors/AppError.js";
 
 
 export default class Service extends CustomService {

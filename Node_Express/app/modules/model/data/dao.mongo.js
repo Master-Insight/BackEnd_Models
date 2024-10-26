@@ -6,4 +6,3 @@ export default class ThisDaoMongo extends DaoMongo {
     super(dataModel);
   }
 }
-

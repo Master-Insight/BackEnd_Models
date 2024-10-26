@@ -1,4 +1,4 @@
-import AppError from "../../../config/AppError.js";
+import AppError from "../../../pkg/errors/AppError.js";
 import CustomController from "../../../pkg/custom/controller.js";
 import cloudinary from "../../../pkg/images/cloudinary.js";
 import Service from "../logic/service.js";

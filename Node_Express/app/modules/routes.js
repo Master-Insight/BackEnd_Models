@@ -2,7 +2,7 @@ import { Router } from "express";
 import usersRouter from "./users/api/routes.js";
 import authRouter from "./auth/api/routes.js";
 import valuesRouter from "./utils/routes.js";
-import AppError from "../config/AppError.js";
+import AppError from "../pkg/errors/AppError.js";
 
 const router = Router()
 

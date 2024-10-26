@@ -9,51 +9,54 @@ El backend esta basado en Modelo, Vista, Controlador (MVC) en formato Modular se
 ├── /cmd                # Puntos de entrada (diferentes servicios o microservicios)
 │   └── server.go
 │
+├── /config             # Configuración global de la aplicación
+│   └── config.go
+│
+├── /migrations         # Migraciones de base de datos
+│
 ├── /modules            # Lógica interna de la aplicación (no exportada)
 │   ├── /auth           # Módulo de autenticación
 │   │   ├── api         # Capa Vista por módulo
-│   │   │   ├── routes.go
-│   │   │   ├── validators.go
 │   │   │   ├── controller.go
-│   │   │   └── dto.go
+│   │   │   ├── dto.go
+│   │   │   ├── routes.go
+│   │   │   └── validators.go
 │   │   ├── data        # Capa Modelo por módulo
 │   │   │   ├── dao.go
 │   │   │   └── model.go
-│   │   ├── logic       # Capa Controllador por módulo
-│   │   │   ├── service.go
-│   │   │   └── xxxxxxx.go
-│   │   └── i18n        # Internacionalización por módulo
-│   │       ├── en.json
-│   │       └── es.json
+│   │   ├── i18n        # Internacionalización por módulo
+│   │   │   ├── en.json
+│   │   │   └── es.json
+│   │   └── logic       # Capa Controllador por módulo
+│   │       ├── service.go
+│   │       └── xxxxxxx.go
 │   │
-│   ├── /user           # Módulo de usuarios
-│   ├── /security       # Módulo de seguridad (autorización, roles)
+│   ├── /order          # Otros módulos
 │   ├── /product        # Módulo de productos
-│   └── /order          # Otros módulos
+│   ├── /security       # Módulo de seguridad (autorización, roles)
+│   └── /user           # Módulo de usuarios
 │
 ├── /pkg                # Código compartido (reutilizable por otros proyectos)
+│   ├── /custom         # Estructuras reutilizables
+│   │   ├── factory_class.go
+│   │   ├── helper_class.go
+│   │   └── utilities.go
+│   ├── /errors         # Manejo de errores centralizado
+│   │   ├── definitions.go   # Definición de errores personalizados
+│   │   └── handler.go       # Lógica de gestión de errores
 │   ├── /middleware     # Middlewares compartidos
 │   │   ├── auth_middleware.go
 │   │   ├── cors_middleware.go
 │   │   ├── logger_middleware.go
 │   │   └── rate_limiter.go
-│   ├── /validators     # Validadores generales
 │   ├── /services       # Servicios compartidos (antes "libraries" o "utils")
-│   │   ├── jwt         # Servicio de autenticación con JWT
+│   │   ├── cache       # Servicio de cache (Redis, Memcached, etc.)
 │   │   ├── db          # Conexiones a bases de datos (MongoDB, MySQL, etc.)
-│   │   ├── env         # Manejo de variables de entorno
-│   │   ├── logs        # Servicio de logging
 │   │   ├── email       # Servicio de envío de correos electrónicos
-│   │   └── cache       # Servicio de cache (Redis, Memcached, etc.)
-│   └── /custom         # Estructuras reutilizables
-│       ├── helper_class.go
-│       ├── factory_class.go
-│       └── utilities.go
-│
-├── /config             # Configuración global de la aplicación
-│   └── config.go
-│
-├── /migrations         # Migraciones de base de datos
+│   │   ├── env         # Manejo de variables de entorno
+│   │   ├── jwt         # Servicio de autenticación con JWT
+│   │   └── logs        # Servicio de logging
+│   └── /validators     # Validadores generales
 │
 ├── /translations       # Sistema de internacionalización general (i18n)
 │   ├── /en             # Archivos de traducción en inglés

@@ -1,19 +1,39 @@
 import AppError from "../../../pkg/errors/AppError.js";
-import CustomController from "../../../pkg/custom/controller.js";
+import MongoController from "../../../pkg/custom/controller/controller.mongoose.js";
 import cloudinary from "../../../pkg/images/cloudinary.js";
 import Service from "../logic/service.js";
 import fs from 'node:fs'
 
-export default class Controller extends CustomController {
+export default class Controller extends MongoController {
   constructor() {
     super(new Service);
   }
 
   getUserSession = (req, res) => res.sendSuccess(req.user)
+  get = async (req, res, next) => {
+    try {
+      const element = await this.service.get({},{ password: 0 });
+      res.sendSuccessOrNotFound(element);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getBy = async (req, res, next) => {
+    try {
+      const { ekey, evalue } = req.query;
+      const filter = {};
+      filter[ekey] = evalue;
+      const element = await this.service.getBy({filter},{ password: 0 });
+      res.sendSuccessOrNotFound(element);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   getAssociates =  async (req, res) => {
     try {
-      const associates = await this.service.get({public: true}, true) 
+      const associates = await this.service.get({public: true}, { password: 0 }) 
       res.sendSuccess(associates)
     } catch (error) {
       next(error)
@@ -23,7 +43,7 @@ export default class Controller extends CustomController {
   getAssociate =  async (req, res) => {
     try {
       const { username } = req.params
-      const associate = await this.service.getBy({username: username}, true) 
+      const associate = await this.service.getBy({username: username}, { password: 0 }) 
       res.sendSuccess(associate)
     } catch (error) {
       next(error)

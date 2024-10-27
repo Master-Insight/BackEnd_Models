@@ -1,7 +1,7 @@
 import { Router } from "express";
 import Controller from "./controller.js";
 import { clients, handleAuth, users } from "../../../pkg/middleware/handlePolicies.js";
-import { uploader } from "../../../pkg/middleware/multer.js";
+import { uploader } from "../../../pkg/middleware/multer.middleware.js";
 import { celebrate } from "celebrate";
 
 const router = Router();

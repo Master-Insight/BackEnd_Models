@@ -1,25 +1,9 @@
+import DaoMongo from "../../../pkg/custom/dao/dao.mongoose.js";
 import dataModel from "./model.js";
-import DaoMongo from "../../../pkg/custom/dao.mongo.js";
 
 export default class ThisDaoMongo extends DaoMongo {
   constructor() {
     super(dataModel);
-  }
-  
-  get = async (filter = {}, excludePassword = true) => {
-    let query = this.model.find(filter);
-    if (excludePassword) {
-      query = query.select('-password');
-    }
-    return await query.exec();
-  };
-
-  getBy = async (filter, excludePassword = true) => {
-    let query = this.model.findOne(filter)
-    if (excludePassword) {
-      query = query.select('-password');
-    }
-    return await query.exec();
   }
 
   updateConection = async (filter) => await this.model.findOneAndUpdate(
@@ -29,3 +13,16 @@ export default class ThisDaoMongo extends DaoMongo {
   )
 }
 
+// caso mongo
+// getUser = async (filter) => {
+//   return await this.dao.get(filter, { password: 0 });
+// };
+
+// caso postgress
+// async getUser(filter) {
+//   const user = await this.dao.getBy(filter);
+//   if (user) {
+//     delete user.password; // Excluir el password manualmente
+//   }
+//   return user;
+// }

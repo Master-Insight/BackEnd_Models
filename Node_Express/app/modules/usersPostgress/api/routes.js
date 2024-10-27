@@ -1,13 +1,19 @@
-import { Router } from 'express';
-import UserController from './controller.js';
+import Controller from './controller.js';
+import CustomRouter from '../../../pkg/custom/routes/Router.js';
 
-const router = Router();
-const userController = new UserController();
+const controller = new Controller()
 
-router.get('/', userController.get);
-router.get('/:eid', userController.getById);
-router.post('/', userController.create);
-router.put('/:eid', userController.updateId);
-router.delete('/:eid', userController.deleteId);
+// http://localhost:8046/v2/users/
 
-export default router;
+class UserRouterPostgresSQL extends CustomRouter {
+  constructor() {
+    super();
+    this.addRoute('get', '/', [], controller.get);
+    this.addRoute('get', '/:id', [], controller.getById);
+    this.addRoute('post', '/', [], controller.create);
+    this.addRoute('put', '/:id', [], controller.updateId);
+    this.addRoute('delete', '/:id', [], controller.deleteId);
+  }
+}
+
+export default new UserRouterPostgresSQL().getRouter();

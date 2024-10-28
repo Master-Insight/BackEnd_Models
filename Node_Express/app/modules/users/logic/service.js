@@ -7,6 +7,9 @@ export default class Service extends MongoService {
     super(new ThisDaoMongo);
   }
 
+  get = async (filter = {}, projection = null, options = {}) => await this.dao.get(filter, { password: 0, ...projection}, options);
+  getBy = async (filter, projection = null) => await this.dao.getBy(filter, { password: 0, ...projection});
+
   updateConection = async (filter)  => await this.dao.updateConection(filter)
 
   // ACTUALIZACION DE IMAGEN

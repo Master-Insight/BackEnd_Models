@@ -10,45 +10,6 @@ export default class Controller extends MongoController {
   }
 
   getUserSession = (req, res) => res.sendSuccess(req.user)
-  get = async (req, res, next) => {
-    try {
-      const element = await this.service.get({},{ password: 0 });
-      res.sendSuccessOrNotFound(element);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  getBy = async (req, res, next) => {
-    try {
-      const { ekey, evalue } = req.query;
-      const filter = {};
-      filter[ekey] = evalue;
-      const element = await this.service.getBy({filter},{ password: 0 });
-      res.sendSuccessOrNotFound(element);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  getAssociates =  async (req, res) => {
-    try {
-      const associates = await this.service.get({public: true}, { password: 0 }) 
-      res.sendSuccess(associates)
-    } catch (error) {
-      next(error)
-    }
-  }
-
-  getAssociate =  async (req, res) => {
-    try {
-      const { username } = req.params
-      const associate = await this.service.getBy({username: username}, { password: 0 }) 
-      res.sendSuccess(associate)
-    } catch (error) {
-      next(error)
-    }
-  }
 
   currentUpdate = async (req, res, next) => {
     try{

@@ -7,8 +7,32 @@ export default class Service extends MongoService {
     super(new ThisDaoMongo);
   }
 
-  get = async (filter = {}, projection = null, options = {}) => await this.dao.get(filter, { password: 0, ...projection}, options);
-  getBy = async (filter, projection = null) => await this.dao.getBy(filter, { password: 0, ...projection});
+  // Función auxiliar para eliminar password de la proyección
+  handlePasswordProjection = (projection) => {
+    const finalProjection = {};
+    
+    if (projection) {
+      if (Object.values(projection).some(value => value === 1)) {
+        Object.assign(finalProjection, projection);
+        delete finalProjection.password; // Eliminar password si se incluye un campo positivo
+      } else {
+        Object.assign(finalProjection, { password: 0, ...projection }); // Agregar password: 0
+      }
+    } else {
+      finalProjection.password = 0; // Sin proyección, agregar password: 0
+    }
+
+    return finalProjection;
+  };
+  
+  get = async (filter = {}, projection = null, options = {}) => {
+    const finalProjection = this.handlePasswordProjection(projection);
+    return await this.dao.get(filter, finalProjection, options);
+  };
+  getBy = async (filter, projection = null) => {
+    const finalProjection = this.handleProjection(projection);
+    return await this.dao.getBy(filter, finalProjection);
+  };
 
   updateConection = async (filter)  => await this.dao.updateConection(filter)
 

@@ -34,7 +34,7 @@ const controller = new Controller()
 
 // http://localhost:8046/v1/users/
 
-class UserRouterPostgresSQL extends CustomRouter {
+class UserRouter extends CustomRouter {
   constructor() {
     super();
     this.addRoute('get', '/', [], controller.get);
@@ -45,4 +45,4 @@ class UserRouterPostgresSQL extends CustomRouter {
   }
 }
 
-export default new UserRouterPostgresSQL().getRouter();
+export default new UserRouter().getRouter();

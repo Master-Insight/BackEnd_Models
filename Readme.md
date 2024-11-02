@@ -70,7 +70,7 @@ El backend esta basado en Modelo, Vista, Controlador (MVC) en formato Modular se
 1. **`/cmd`**:
    - Contiene los puntos de entrada de la aplicación, normalmente archivos como `main.go` o `server.go` que inician los microservicios o servicios principales.
    
-2. **`/app`**:
+2. **`/modules`**:
    - Lógica interna de la aplicación dividida por módulos, lo cual permite un fácil escalamiento y separación de responsabilidades.
    - Cada módulo (por ejemplo, `auth`, `user`, `security`) tiene sus propias subcapas:
      - **`api`**: Capa de vista, incluye rutas, validadores, controladores, y objetos DTO (Data Transfer Objects).
@@ -97,7 +97,9 @@ El backend esta basado en Modelo, Vista, Controlador (MVC) en formato Modular se
 7. **`/scripts`**:
    - Scripts útiles para despliegue, testing, migraciones, u otros procesos que faciliten el mantenimiento o la automatización de tareas dentro del entorno de desarrollo.
 
-## Componentes
+## Otras Carpetas
 
-* Modulos:
-  * auth: manejo de usuario, referente a sesiones y contraseñas
+Adicionalmente a la carpeta App, que es donde se encuentra toda la logica de la aplicación podremos encontrar:
+
+- Carpeta **Public**: documentos públicos
+- Carpeta **Vendors** (eJ: node_modules): esta carpeta puede contener diferentes nombres según el idioma usado y contiene las librerías utilizadas. Es muy propio a cada lenguaje.
